@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tasks</string>
+    <!-- Strings -->
+    <string name="hw9">Homework 9</string>
+    <string name="hw10">Homework 10</string>
+    <string name="student_activity">Student</string>
+    <string name="search">Search</string>
+
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gmail.pmanenok.tasks.presentation.screen.hw10.HW10ViewModel" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{viewModel.isMale ? @color/paleLightGreen : @color/lightViolet}"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="3"
+
+            app:src="@{viewModel.data.imageUrl}" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/HW10TextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{viewModel.isMale ? @color/green : @color/violet}"
+                android:text="@{viewModel.data.fio}" />
+
+            <TextView
+                style="@style/HW10TextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{viewModel.isMale ? @color/green : @color/violet}"
+                android:text="@{viewModel.data.age}" />
+
+            <TextView
+                style="@style/HW10TextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{viewModel.isMale ? @color/green : @color/violet}"
+                android:text="@{viewModel.data.gender}" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
