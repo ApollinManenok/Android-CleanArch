@@ -4,11 +4,12 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import com.gmail.pmanenok.tasks.R
-import com.gmail.pmanenok.tasks.databinding.FragmentStudentListBinding
+import com.gmail.pmanenok.tasks.databinding.FragmentStudentDetailsBinding
 import com.gmail.pmanenok.tasks.presentation.base.BaseMvvmFragment
 import com.gmail.pmanenok.tasks.presentation.screen.student.StudentRouter
 
-class StudentDetailsFragment : BaseMvvmFragment<StudentDetailsViewModel, StudentRouter, FragmentStudentListBinding>() {
+class StudentDetailsFragment :
+    BaseMvvmFragment<StudentDetailsViewModel, StudentRouter, FragmentStudentDetailsBinding>() {
     companion object {
         private const val ID_EXTRA = "ID_EXTRA"
         fun getInstance(id: String): StudentDetailsFragment {

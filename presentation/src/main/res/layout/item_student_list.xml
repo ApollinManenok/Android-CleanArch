@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@{item.isMale ? @color/paleLightGreen : @color/lightViolet}"
+            android:background='@{item.isMale ? @color/green_background_match : @color/violet_background_match}'
             android:orientation="horizontal">
 
             <ImageView
@@ -40,21 +40,21 @@
                     style="@style/HW10TextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@{item.isMale ? @color/green : @color/violet}"
+                    android:background='@{item.isMale ? @color/green : @color/violet}'
                     android:text="@{item.fio}" />
 
                 <TextView
                     style="@style/HW10TextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@{item.isMale ? @color/green : @color/violet}"
+                    android:background='@{item.isMale ? @color/green : @color/violet}'
                     android:text="@{item.age}" />
 
                 <TextView
                     style="@style/HW10TextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@{item.isMale ? @color/green : @color/violet}"
+                    android:background='@{item.isMale ? @color/green : @color/violet}'
                     android:text="@{item.gender}" />
             </LinearLayout>
         </LinearLayout>

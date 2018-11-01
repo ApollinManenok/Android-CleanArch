@@ -13,42 +13,82 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/lightGrey">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="3"
-            android:background="@color/grey"
-            app:src="@{item.imageUrl}" />
+        android:background='@{viewModel.isMale() ? @color/green_background_match : @color/violet_background_match}'
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                style="@style/HW10TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/grey"
-                android:text="@{item.fio}" />
+            <ImageView
+                android:id="@+id/student_details_image"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                app:src="@{viewModel.imageUrl}" />
 
-            <TextView
-                style="@style/HW10TextStyle"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/grey"
-                android:text="@{item.age}" />
+                android:layout_weight="7"
+                android:orientation="vertical">
 
-            <TextView
-                style="@style/HW10TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/grey"
-                android:text="@{item.gender}" />
+                <EditText
+                    android:id="@+id/student_details_fio"
+                    style="@style/StudentEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background='@{viewModel.isMale() ? @color/green : @color/violet}'
+                    android:text="@={viewModel.name}" />
+
+                <EditText
+                    android:id="@+id/student_details_age"
+                    style="@style/StudentEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background='@{viewModel.isMale() ? @color/green : @color/violet}'
+                    android:inputType="number"
+                    android:text="@={viewModel.age}" />
+
+                <EditText
+                    android:id="@+id/student_details_gender"
+                    style="@style/StudentEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background='@{viewModel.isMale() ? @color/green : @color/violet}'
+                    android:text="@={viewModel.gender}" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/student_details_url"
+            style="@style/StudentEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background='@{viewModel.isMale() ? @color/green : @color/violet}'
+            android:text="@={viewModel.imageUrl}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/student_details_save"
+                style="@style/StudentDetailsButtonStyle"
+                android:layout_height="50dp"
+                android:background='@{viewModel.isMale() ? @drawable/round_button_green : @drawable/round_button_violet2}'
+                android:onClick="@{viewModel::onSaveClick}"
+                android:text="@string/student_details_save" />
+
+            <Button
+                android:id="@+id/student_details_delete"
+                style="@style/StudentDetailsButtonStyle"
+                android:layout_height="50dp"
+                android:background='@{viewModel.isMale() ? @drawable/round_button_green : @drawable/round_button_violet2}'
+                android:onClick="@{viewModel::onDeleteClick}"
+                android:text="@string/student_details_delete" />
         </LinearLayout>
 
     </LinearLayout>

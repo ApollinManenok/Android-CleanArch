@@ -8,6 +8,24 @@ import com.gmail.pmanenok.tasks.presentation.screen.student.list.StudentListFrag
 
 class StudentRouter(activity: StudentActivity) : BaseRouter<StudentActivity>(activity) {
 
+    fun goBackFromDetails() {
+        val containerDetails = activity.findViewById<View>(R.id.student_container_details)
+        if (containerDetails == null) {
+            popBackStack()
+        } else {
+            val transaction = activity.supportFragmentManager.beginTransaction()
+            val frag = activity.supportFragmentManager.findFragmentByTag(StudentListFragment::class.java.canonicalName)
+            val fragDetail =
+                activity.supportFragmentManager.findFragmentByTag(StudentDetailsFragment::class.java.canonicalName)
+            if (frag != null && fragDetail != null) {
+                transaction.detach(frag)
+                transaction.detach(fragDetail)
+                transaction.attach(frag)
+            }
+            transaction.commit()
+        }
+    }
+
     fun goToStudentList() {
         replaceFragment(
             activity.supportFragmentManager,
@@ -34,6 +52,5 @@ class StudentRouter(activity: StudentActivity) : BaseRouter<StudentActivity>(act
                 false
             )
         }
-
     }
 }

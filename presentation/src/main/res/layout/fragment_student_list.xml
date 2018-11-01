@@ -20,13 +20,27 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:hint="@string/search" />
+            android:hint="@string/search_hint" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list_recycle_view"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:visibility="@{!viewModel.isProgressEnabled}" />
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/list_fab_add_student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_add_white_24dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:visibility="@{!viewModel.isProgressEnabled}" />
+
+        </FrameLayout>
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -34,6 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:visibility="@{viewModel.isProgressEnabled}" />
+
+
     </LinearLayout>
 
 </layout>

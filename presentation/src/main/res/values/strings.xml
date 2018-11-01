@@ -4,6 +4,9 @@
     <string name="hw9">Homework 9</string>
     <string name="hw10">Homework 10</string>
     <string name="student_activity">Student</string>
-    <string name="search">Search</string>
+    <string name="search_hint">Search</string>
 
+    <string name="student_details_save">Save</string>
+    <string name="student_details_delete">Delete</string>
+    <string name="student_details_load_image">Load Image</string>
 </resources>

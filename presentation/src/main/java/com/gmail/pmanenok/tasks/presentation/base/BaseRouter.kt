@@ -1,11 +1,14 @@
 package com.gmail.pmanenok.tasks.presentation.base
 
-import android.app.Activity
 import android.support.v4.app.FragmentManager
 import android.util.Log
 import android.widget.Toast
 
 abstract class BaseRouter<A : BaseActivity>(val activity: A) {
+
+    fun popBackStack() {
+        activity.supportFragmentManager.popBackStack()
+    }
 
     fun goBack() {
         activity.onBackPressed()

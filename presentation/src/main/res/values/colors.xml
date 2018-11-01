@@ -16,10 +16,12 @@
     <color name="blue">#0000ff</color>
     <color name="darkBlue">#000091</color>
     <color name="lightViolet">#cd87ff</color>
-    <color name="violet">#a629ff</color>
+    <color name="violet">#8304c2</color>
+    <color name="violet_background_match">#670499</color>
     <color name="paleLightGreen">#73e664</color>
     <color name="lightGreen">#3dff23</color>
     <color name="green">#17e100</color>
+    <color name="green_background_match">#11ab00</color>
     <color name="darkGreen">#109e00</color>
     <color name="yellow">#ffe100</color>
     <color name="orange">#ffa600</color>

@@ -30,8 +30,6 @@ class StudentListFragment : BaseMvvmFragment<StudentListViewModel, StudentRouter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("aaa", "onViewCreatedFragment")
-        Log.e("aaa", viewModel.adapter.toString())
         binding.listRecycleView.adapter = viewModel.adapter
         binding.listRecycleView.layoutManager = LinearLayoutManager(context)
         binding.listRecycleView.setHasFixedSize(true)
@@ -43,7 +41,7 @@ class StudentListFragment : BaseMvvmFragment<StudentListViewModel, StudentRouter
                 onError = {
                     router?.showError(it)
                 })
-
+        binding.listFabAddStudent.setOnClickListener { router?.goToStudentDetails("") }
     }
 }
 

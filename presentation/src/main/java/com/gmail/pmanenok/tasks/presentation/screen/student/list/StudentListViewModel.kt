@@ -23,7 +23,6 @@ class StudentListViewModel : BaseViewModel<StudentRouter>() {
 
     init {
         //adapter.setListener
-        Log.e("aaa", "StudentListViewModel init")
         isProgressEnabled.set(true)
         val disposable = studentListUseCase.get().subscribeBy(
             onNext = {
@@ -43,7 +42,7 @@ class StudentListViewModel : BaseViewModel<StudentRouter>() {
         val studentSearch = StudentSearch(search)
         val disposable = searchStudentListUseCase.search(studentSearch).subscribeBy(
             onNext = {
-                //adapter.itemList = it// set data to adapter
+                adapter.itemList = it// set data to adapter
             },
             onError = { router?.showError(it) }
         )
