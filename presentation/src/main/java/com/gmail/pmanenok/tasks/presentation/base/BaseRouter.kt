@@ -19,6 +19,11 @@ abstract class BaseRouter<A : BaseActivity>(val activity: A) {
         Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
     }
 
+    fun showError(message: String) {
+        Log.e("Error in Router", message)
+        Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+    }
+
     fun replaceFragment(
         fragmentManager: FragmentManager,
         fragment: BaseFragment,

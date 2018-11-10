@@ -1,8 +1,8 @@
 package com.gmail.pmanenok.tasks.presentation.utils
 
 import android.databinding.BindingAdapter
+import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import com.gmail.pmanenok.tasks.R
 import com.gmail.pmanenok.tasks.app.PicassoCircleTransformation
@@ -10,9 +10,10 @@ import com.squareup.picasso.Picasso
 
 @BindingAdapter("src")
 fun setSrc(view: ImageView, url: String?) {
-    if (url == "" || url == null) {
+    if (url.isNullOrBlank()) {
         Picasso.get().load(R.drawable.default_user).into(view)
     } else {
+        Log.e("aaa", url)
         Picasso.get().load(url).transform(PicassoCircleTransformation()).into(view)
     }
 }

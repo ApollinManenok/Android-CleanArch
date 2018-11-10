@@ -1,7 +1,6 @@
 package com.gmail.pmanenok.tasks.presentation.screen.student.list
 
 import android.databinding.ObservableBoolean
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.gmail.pmanenok.domain.entity.student.StudentSearch
 import com.gmail.pmanenok.tasks.factories.UseCaseProvider
@@ -11,10 +10,7 @@ import com.gmail.pmanenok.tasks.presentation.screen.student.list.adapter.Student
 import io.reactivex.rxkotlin.subscribeBy
 
 class StudentListViewModel : BaseViewModel<StudentRouter>() {
-    //made adapter for recyclerView
-
     val adapter = StudentListAdapter { router?.goToStudentDetails(it.id) }
-    //: RecyclerView.Adapter<*>? = null //
     val isProgressEnabled = ObservableBoolean(false)
 
     private var studentListUseCase = UseCaseProvider.provideGetStudentListUseCase()
@@ -22,10 +18,11 @@ class StudentListViewModel : BaseViewModel<StudentRouter>() {
     private var searchStudentListUseCase = UseCaseProvider.provideSearchStudentUseCase()
 
     init {
-        //adapter.setListener
+        Log.e("bbb", "StudentListViewModel init")
         isProgressEnabled.set(true)
         val disposable = studentListUseCase.get().subscribeBy(
             onNext = {
+                Log.e("aaa", "StudentListViewModel onNext")
                 isProgressEnabled.set(false)
                 adapter.itemList = it// set data to adapter
             },
@@ -38,10 +35,12 @@ class StudentListViewModel : BaseViewModel<StudentRouter>() {
     }
 
     fun search(search: String) {
+        Log.e("aaa", "StudentListViewModel search")
         if (isProgressEnabled.get()) return
         val studentSearch = StudentSearch(search)
         val disposable = searchStudentListUseCase.search(studentSearch).subscribeBy(
             onNext = {
+                Log.e("aaa", "StudentListViewModel search onNext")
                 adapter.itemList = it// set data to adapter
             },
             onError = { router?.showError(it) }

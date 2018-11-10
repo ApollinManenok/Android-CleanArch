@@ -1,6 +1,5 @@
 package com.gmail.pmanenok.data.repositories
 
-import android.util.Log
 import com.gmail.pmanenok.domain.entity.student.Student
 import com.gmail.pmanenok.domain.entity.student.StudentSearch
 import com.gmail.pmanenok.domain.repositories.StudentRepository
@@ -10,7 +9,7 @@ import io.reactivex.Observable
 class StudentRepositoryImpl : StudentRepository {
     private var list = mutableListOf<Student>(
         Student(
-            "0", "Jane", 10,
+            "E236E066-3F84-93F9-FFDB-721132CED100", "Jane", 10,
             imageUrl = "https://petapixel.com/assets/uploads/2018/07/dogphotosfeat-800x420.jpg"
         ),
         Student("1", "John", 34, "male", "https://www.bensound.com/bensound-img/november.jpg"),
@@ -26,12 +25,7 @@ class StudentRepositoryImpl : StudentRepository {
         Student("5", "Kate", 23)
     )
 
-    init {
-        Log.e("aaa", "StudentRepositoryImpl init ${list.size}")
-    }
-
     override fun get(id: String): Observable<Student> {
-        Log.e("aaa", "StudentRepositoryImpl get id${searchById(id)}")
         return Observable.just(searchById(id))
     }
 
@@ -57,8 +51,6 @@ class StudentRepositoryImpl : StudentRepository {
     }
 
     override fun get(): Observable<List<Student>> {
-        Log.e("aaa", "StudentRepositoryImpl get${list.size}")
-
         return Observable.just(list)
     }
 
@@ -72,7 +64,6 @@ class StudentRepositoryImpl : StudentRepository {
         } else {
             searchList.addAll(list)
         }
-        Log.e("aaa", "StudentRepositoryImpl search ${searchList.size}")
         return Observable.just(searchList)
     }
 
@@ -82,15 +73,17 @@ class StudentRepositoryImpl : StudentRepository {
             if (list.add(student)) return Completable.complete()
         } else if (position != null) {
             list[position] = student
-            Log.e("aaa", "StudentRepositoryImpl update ${list.size}")
             return Completable.complete()
         }
         return Completable.never()
     }
 
+    override fun save(student: Student): Completable {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun delete(studentId: String): Completable {
         if (list.remove(searchById(studentId))) {
-            Log.e("aaa", "StudentRepositoryImpl delete ${list.size}")
             return Completable.complete()
         }
         return Completable.never()

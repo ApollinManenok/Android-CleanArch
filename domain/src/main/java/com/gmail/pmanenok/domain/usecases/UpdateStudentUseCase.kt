@@ -12,4 +12,10 @@ class UpdateStudentUseCase(postExecutorThread: PostExecutorThread, private val s
             .observeOn(postExecutorThread)
             .subscribeOn(workExecutorThread)
     }
+
+    fun save(student: Student): Completable {
+        return studentRepository.save(student)
+            .observeOn(postExecutorThread)
+            .subscribeOn(workExecutorThread)
+    }
 }

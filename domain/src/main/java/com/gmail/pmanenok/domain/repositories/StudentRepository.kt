@@ -11,5 +11,6 @@ interface StudentRepository : BaseRepository {
     fun get(id: String): Observable<Student>
     fun search(search: StudentSearch): Observable<List<Student>>
     fun update(student: Student): Completable
+    fun save(student: Student): Completable
     fun delete(studentId: String): Completable
 }

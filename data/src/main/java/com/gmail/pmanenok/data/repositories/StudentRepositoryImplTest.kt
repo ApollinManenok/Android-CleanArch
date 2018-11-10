@@ -1,6 +1,7 @@
 package com.gmail.pmanenok.data.repositories
 
 import com.gmail.pmanenok.data.entity.transformToDomain
+import com.gmail.pmanenok.data.entity.transformToRequest
 import com.gmail.pmanenok.data.net.RestService
 import com.gmail.pmanenok.domain.entity.student.Student
 import com.gmail.pmanenok.domain.entity.student.StudentSearch
@@ -9,24 +10,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 
 class StudentRepositoryImplTest(val apiService: RestService) : StudentRepository {
-    private var list = listOf<Student>(
-        Student(
-            "0", "Jane", 10, "female",
-            imageUrl = "https://petapixel.com/assets/uploads/2018/07/dogphotosfeat-800x420.jpg"
-        ),
-        Student("1", "John", 34, imageUrl = "https://www.bensound.com/bensound-img/november.jpg"),
-        Student("2", "Peter", 87),
-        Student(
-            "3", "Jack", 32,
-            imageUrl = "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&h=350"
-        ),
-        Student(
-            "4", "Sue", 89, "female",
-            imageUrl = "https://i.pinimg.com/originals/00/f9/12/00f9120dabc6cacccf5a4eb14fe10f3c.jpg"
-        ),
-        Student("5", "Kate", 23, "female")
-    )
-
+    //https://api.backendless.com/3C38FF89-D6CA-F09A-FF2D-375419F6C600/6D5A1710-032A-8000-FF13-60CA35177F00/data/students
     override fun get(id: String): Observable<Student> {
         return apiService.getStudentById(id).map { it.transformToDomain() }
     }
@@ -36,17 +20,19 @@ class StudentRepositoryImplTest(val apiService: RestService) : StudentRepository
     }
 
     override fun search(search: StudentSearch): Observable<List<Student>> {
-        val searchList = mutableListOf<Student>()
-        searchList.add(list[3])
-        searchList.add(list[4])
-        return Observable.just(list)
+        //TODO change search method!!!
+        return apiService.getStudents().map { it.map { it.transformToDomain() } }
     }
 
     override fun update(student: Student): Completable {
-        return Completable.complete()
+        return Completable.fromObservable(apiService.updateStudent(student.transformToRequest()))
+    }
+
+    override fun save(student: Student): Completable {
+        return Completable.fromObservable(apiService.saveStudent(student.transformToRequest()))
     }
 
     override fun delete(studentId: String): Completable {
-        return Completable.complete()
+        return Completable.fromObservable(apiService.deleteStudent(studentId))
     }
 }

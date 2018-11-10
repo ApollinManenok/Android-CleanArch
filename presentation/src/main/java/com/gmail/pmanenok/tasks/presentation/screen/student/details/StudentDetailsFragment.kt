@@ -12,7 +12,7 @@ class StudentDetailsFragment :
     BaseMvvmFragment<StudentDetailsViewModel, StudentRouter, FragmentStudentDetailsBinding>() {
     companion object {
         private const val ID_EXTRA = "ID_EXTRA"
-        fun getInstance(id: String): StudentDetailsFragment {
+        fun getInstance(id: String = ""): StudentDetailsFragment {
             val fragment = StudentDetailsFragment()
             val bundle = Bundle()
             bundle.putString(ID_EXTRA, id)
