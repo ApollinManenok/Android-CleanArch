@@ -17,20 +17,22 @@ class StudentListViewModel : BaseViewModel<StudentRouter>() {
 
     private var searchStudentListUseCase = UseCaseProvider.provideSearchStudentUseCase()
 
-    init {
-        Log.e("bbb", "StudentListViewModel init")
+    /*init {*/fun get() {
+        Log.e("bbb", "StudentListViewModel get")
         isProgressEnabled.set(true)
-        val disposable = studentListUseCase.get().subscribeBy(
-            onNext = {
-                Log.e("aaa", "StudentListViewModel onNext")
-                isProgressEnabled.set(false)
-                adapter.itemList = it// set data to adapter
-            },
-            onError = {
-                isProgressEnabled.set(false)
-                router?.showError(it)
-            }
-        )
+        val disposable = studentListUseCase.get().doOnSubscribe { Log.e("ccc", "Subscribed") }
+            .doOnTerminate { Log.e("ccc", "terminated") }
+            .doOnDispose { Log.e("ccc", "Disposed") }.doOnComplete { Log.e("ccc", "Completed") }.subscribeBy(
+                onNext = {
+                    Log.e("aaa", "StudentListViewModel onNext")
+                    isProgressEnabled.set(false)
+                    adapter.itemList = it// set data to adapter
+                },
+                onError = {
+                    isProgressEnabled.set(false)
+                    router?.showError(it)
+                }
+            )
         addToDisposable(disposable)
     }
 
@@ -46,5 +48,10 @@ class StudentListViewModel : BaseViewModel<StudentRouter>() {
             onError = { router?.showError(it) }
         )
         addToDisposable(disposable)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.e("aaa", "StudentListViewModel Cleared")
     }
 }

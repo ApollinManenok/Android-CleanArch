@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.gmail.pmanenok.tasks.R
-import com.gmail.pmanenok.tasks.app.PicassoCircleTransformation
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("src")

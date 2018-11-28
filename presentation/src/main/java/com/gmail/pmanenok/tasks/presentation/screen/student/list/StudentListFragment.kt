@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit
 class StudentListFragment : BaseMvvmFragment<StudentListViewModel, StudentRouter, FragmentStudentListBinding>() {
     companion object {
         fun getInstance(): StudentListFragment {
+            Log.e("bbb", "StudentListFragment getInstance")
             return StudentListFragment()
         }
     }
@@ -27,21 +28,31 @@ class StudentListFragment : BaseMvvmFragment<StudentListViewModel, StudentRouter
 
     override fun provideLayoutId(): Int = R.layout.fragment_student_list
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("bbb", "StudentListFragment onCreate")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.e("bbb", "StudentListFragment onViewCreated")
         super.onViewCreated(view, savedInstanceState)
+        Log.e("bbb", "StudentListFragment onViewCreated")
         binding.listRecycleView.adapter = viewModel.adapter
         binding.listRecycleView.layoutManager = LinearLayoutManager(context)
         binding.listRecycleView.setHasFixedSize(true)
-        RxTextView.textChanges(binding.searchEditText).throttleFirst(500L, TimeUnit.MILLISECONDS)
-            .subscribeBy(
-                onNext = {
-                    Log.e("bbb", "StudentListFragment onViewCreated searching")
-                    viewModel.search(it.toString())
-                },
-                onError = {
-                    router?.showError(it)
-                })
+        viewModel.get()
+        addToDisposable(
+            RxTextView.textChanges(binding.searchEditText).throttleFirst(500L, TimeUnit.MILLISECONDS)
+                .subscribeBy(
+                    onNext = {
+                        if (it.isNotBlank()) {
+                            Log.e("bbb", "StudentListFragment onViewCreated searching")
+                            viewModel.search(it.toString())
+                        }
+                    },
+                    onError = {
+                        router?.showError(it)
+                    })
+        )
         binding.listFabAddStudent.setOnClickListener { router?.goToStudentDetails("") }
     }
 

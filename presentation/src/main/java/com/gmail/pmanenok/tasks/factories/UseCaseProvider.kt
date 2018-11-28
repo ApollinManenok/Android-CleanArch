@@ -15,9 +15,9 @@ object UseCaseProvider {
         RestService("https://api.backendless.com/3C38FF89-D6CA-F09A-FF2D-375419F6C600/6D5A1710-032A-8000-FF13-60CA35177F00/data/")
     val studentDao = AppDataBase.getInstance(App.instance.applicationContext).getStudentDao()
 
+    //val repository = StudentRepositoryImpl()
     //val repository = StudentRepositoryImplTest(restService)
     val repository = StudentRepositoryImplTestDb(restService, studentDao)
-    val repositoryGet = StudentRepositoryImpl()
 
     fun provideGetStudentListUseCase(): GetStudentsUseCase {
         Log.e("aaa", "UseCaseProvider provideGetStudentListUseCase")

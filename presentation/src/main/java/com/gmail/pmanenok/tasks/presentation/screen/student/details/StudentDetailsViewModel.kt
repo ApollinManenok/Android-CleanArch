@@ -50,9 +50,9 @@ class StudentDetailsViewModel : BaseViewModel<StudentRouter>() {
         Log.e("aaa", "StudentDetailsViewModel onSaveClick")
         if (checkParams(name.get().toString(), age.get().toString(), gender.get().toString())) {
             if (studentId == "") {
-                updateStudent.save(createStudent()).blockingAwait(1, TimeUnit.SECONDS)
+                updateStudent.save(createStudent()).blockingAwait(2, TimeUnit.SECONDS)
             } else {
-                updateStudent.update(createStudent()).blockingAwait(1, TimeUnit.SECONDS)
+                updateStudent.update(createStudent()).blockingAwait(2, TimeUnit.SECONDS)
             }
             router?.goBackFromDetails()
         }
@@ -65,10 +65,10 @@ class StudentDetailsViewModel : BaseViewModel<StudentRouter>() {
         } else if (age.isBlank() || age.toIntOrNull() == null) {
             router?.showError("Student age is blank or not a number!")
             return false
-        } else if (gender.isBlank() || gender == "female" || gender == "male" || gender == "Female" || gender == "Male") {
+        } else if (gender.isBlank() || gender.compareTo("female", true) == 0 || gender.compareTo("male", true) == 0) {
             return true
         }
-        router?.showError("Student gender must be female or male(Female/Male)!")
+        router?.showError("Student gender must be female or male!")
         return false
     }
 
@@ -80,14 +80,19 @@ class StudentDetailsViewModel : BaseViewModel<StudentRouter>() {
 
         if (stGender.isBlank() && stImgUrl.isBlank()) return Student(studentId, stName, stAge)
         else if (stGender.isBlank()) return Student(studentId, stName, stAge, imageUrl = stImgUrl)
-        else if (stImgUrl.isBlank()) return Student(studentId, stName, stAge, stGender)
-        else return Student(studentId, stName, stAge, stGender, stImgUrl)
+        else if (stImgUrl.isBlank()) return Student(studentId, stName, stAge, stGender.toLowerCase())
+        else return Student(studentId, stName, stAge, stGender.toLowerCase(), stImgUrl)
     }
 
     fun onDeleteClick(view: View) {
         Log.e("aaa", "StudentDetailsViewModel onDeleteClick")
-        deleteStudentById.delete(studentId).blockingAwait(1, TimeUnit.SECONDS)
-        /*else */router?.goBackFromDetails()
+        deleteStudentById.delete(studentId).blockingAwait(2, TimeUnit.SECONDS)
+        router?.goBackFromDetails()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.e("aaa", "StudentDetailsViewModel Cleared")
     }
 
 }

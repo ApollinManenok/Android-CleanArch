@@ -22,12 +22,12 @@ class StudentRepositoryImplTestDb(val apiService: RestService, val studentDao: S
     private var lastTimeUpdate = 0L
 
     override fun get(id: String): Observable<Student> {
-        return studentDao.getById(id).toObservable().map { it.transformToDomain() }
+        return studentDao.getById(id).take(1).toObservable().map { it.transformToDomain() }
     }
 
     override fun get(): Observable<List<Student>> {
         Log.e("aaa", "StudentRepositoryImplTestDb get")
-        return studentDao.getAll().toObservable()
+        return studentDao.getAll().take(1).toObservable()
             .flatMap { studentDbList ->
                 if (studentDbList.isEmpty() || System.currentTimeMillis() - lastTimeUpdate > TIME_BUFFER) {
                     Log.e(
@@ -65,18 +65,21 @@ class StudentRepositoryImplTestDb(val apiService: RestService, val studentDao: S
 
     override fun update(student: Student): Completable {
         return Completable.fromObservable(apiService.updateStudent(student.transformToRequest()).doFinally {
+            Log.e("aaa", "studentDao.update")
             studentDao.update(student.transformToDb())
         })
     }
 
     override fun save(student: Student): Completable {
         return Completable.fromObservable(apiService.saveStudent(student.transformToRequest()).doFinally {
+            Log.e("aaa", "studentDao.insert")
             studentDao.insert(student.transformToDb())
         })
     }
 
     override fun delete(studentId: String): Completable {
         return Completable.fromObservable(apiService.deleteStudent(studentId).doFinally {
+            Log.e("aaa", "studentDao.deleteById")
             studentDao.deleteById(studentId)
         })
     }

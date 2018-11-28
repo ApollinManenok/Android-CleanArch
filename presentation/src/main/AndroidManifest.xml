@@ -23,5 +23,9 @@
         </activity>
         <activity android:name=".presentation.screen.hw9.HW9Activity" />
         <activity android:name=".presentation.screen.hw10.HW10Activity" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6d86187eec22c090016341351ee6c887ac458994" />
     </application>
+
 </manifest>

@@ -18,10 +18,10 @@ abstract class AppDataBase : RoomDatabase() {
                 DATABASE_NAME
             )
                 .fallbackToDestructiveMigration()
+                //.allowMainThreadQueries()
                 .build()
         }
     }
-//Supertypes of the following classes cannot be resolved. Please make sure you have the required dependencies in the classpath:
-//    class com.gmail.pmanenok.data.db.AppDataBase, unresolved supertypes: android.arch.persistence.room.RoomDatabase
+
     abstract fun getStudentDao(): StudentDao
 }

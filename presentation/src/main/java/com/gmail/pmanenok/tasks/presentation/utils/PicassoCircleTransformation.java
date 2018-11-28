@@ -1,4 +1,4 @@
-package com.gmail.pmanenok.tasks.app;
+package com.gmail.pmanenok.tasks.presentation.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

@@ -9,4 +9,9 @@
     <string name="student_details_save">Save</string>
     <string name="student_details_delete">Delete</string>
     <string name="student_details_load_image">Load Image</string>
+
+    <string name="details_name_hint">Name</string>
+    <string name="details_age_hint">Age</string>
+    <string name="details_gender_hint">Gender</string>
+    <string name="details_image_hint">Image Url</string>
 </resources>

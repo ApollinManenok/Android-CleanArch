@@ -27,11 +27,4 @@ fun Student.transformToDb(): StudentDb {
     )
 }
 
-//error: Not sure how to convert a Cursor to this method's return type
-//    public abstract io.reactivex.Observable<com.gmail.pmanenok.data.db.entity.StudentDb> getById(@org.jetbrains.annotations.NotNull()
-//
-// error: Not sure how to convert a Cursor to this method's return type
-//    public abstract io.reactivex.Observable<java.util.List<com.gmail.pmanenok.data.db.entity.StudentDb>> getAll();
-//                                                                                                         ^	                                                                                    ^
-
 

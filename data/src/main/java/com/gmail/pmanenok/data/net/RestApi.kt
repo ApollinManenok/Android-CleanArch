@@ -10,8 +10,8 @@ interface RestApi {
     fun getStudents(@Query("pageSize") size: Int): Observable<List<StudentResponse>>
 
     //https://tut.by/students?id=afgj
-    //@GET("student")
-    //fun getStudents(@Query("id") id: String): Observable<StudentResponse>
+    /*@GET("student")
+    fun getStudents(@Query("id") id: String): Observable<StudentResponse>*/
 
     //https://tut.by/students/1245s/
     @GET("students/{id}")
@@ -28,9 +28,9 @@ interface RestApi {
 
 
     //https://tut.by/students
-    //@DELETE("students")
-    //@Header("key: value")
-    //fun deleteStudent(@Body student: StudentDeleteRequest): Observable<Void>
+    /*@DELETE("students")
+    @Header("key: value")
+    fun deleteStudent(@Body student: StudentDeleteRequest): Observable<Void>*/
 
     //https://tut.by/students/345g/
     @DELETE("students/{id}")

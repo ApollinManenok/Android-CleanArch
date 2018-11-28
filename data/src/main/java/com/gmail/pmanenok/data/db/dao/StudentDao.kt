@@ -2,10 +2,8 @@ package com.gmail.pmanenok.data.db.dao
 
 import android.arch.persistence.room.*
 import com.gmail.pmanenok.data.db.entity.StudentDb
+import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Observable
-import android.arch.persistence.room.OnConflictStrategy
-
 
 
 @Dao
@@ -33,7 +31,4 @@ interface StudentDao {
 
     @Query("SELECT * FROM student WHERE id = :id LIMIT 1")
     fun getById(id: String): Flowable<StudentDb>
-
-    // Supertypes of the following classes cannot be resolved. Please make sure you have the required dependencies in the classpath:
-    //    class com.gmail.pmanenok.data.db.AppDataBase, unresolved supertypes: android.arch.persistence.room.RoomDatabase
 }
