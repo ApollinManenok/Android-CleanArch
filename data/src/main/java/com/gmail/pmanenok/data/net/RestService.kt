@@ -1,8 +1,10 @@
 package com.gmail.pmanenok.data.net
 
 import android.util.Log
+import com.gmail.pmanenok.data.entity.LoginRequest
 import com.gmail.pmanenok.data.entity.StudentRequest
 import com.gmail.pmanenok.data.entity.StudentResponse
+import com.gmail.pmanenok.data.entity.Token
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -65,6 +67,10 @@ class RestService(private val apiUrl: String) {
     fun deleteStudent(id: String): Observable<String> {
         //Log.e("aaa", "RestService deleteStudent $id")
         return restApi.deleteStudent(id).compose(restParser.parseError())
+    }
+
+    fun login(login: LoginRequest): Observable<Token>{
+        return restApi.login(login).compose(restParser.parseError())
     }
 }
 /*

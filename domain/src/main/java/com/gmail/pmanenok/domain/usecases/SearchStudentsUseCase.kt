@@ -5,8 +5,9 @@ import com.gmail.pmanenok.domain.entity.student.StudentSearch
 import com.gmail.pmanenok.domain.executor.PostExecutorThread
 import com.gmail.pmanenok.domain.repositories.StudentRepository
 import io.reactivex.Observable
+import javax.inject.Inject
 
-class SearchStudentsUseCase(postExecutorThread: PostExecutorThread, private val studentRepository: StudentRepository) :
+class SearchStudentsUseCase @Inject constructor(postExecutorThread: PostExecutorThread, private val studentRepository: StudentRepository) :
     BaseUseCase(postExecutorThread) {
     fun search(search: StudentSearch): Observable<List<Student>> {
         return studentRepository.search(search)

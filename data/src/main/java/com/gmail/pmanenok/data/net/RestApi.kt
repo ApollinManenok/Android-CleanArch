@@ -1,11 +1,16 @@
 package com.gmail.pmanenok.data.net
 
+import com.gmail.pmanenok.data.entity.LoginRequest
 import com.gmail.pmanenok.data.entity.StudentRequest
 import com.gmail.pmanenok.data.entity.StudentResponse
+import com.gmail.pmanenok.data.entity.Token
 import io.reactivex.Observable
 import retrofit2.http.*
 
 interface RestApi {
+    @POST("login")
+    fun login(@Body body: LoginRequest): Observable<Token>
+
     @GET("students")
     fun getStudents(@Query("pageSize") size: Int): Observable<List<StudentResponse>>
 

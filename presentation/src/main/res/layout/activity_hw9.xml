@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.gmail.pmanenok.tasks.presentation.screen.hw9.HW9ViewModel" />
+            type="com.gmail.pmanenok.tasks.presentation.screen.hw9.HW20ViewModel" />
     </data>
 
     <LinearLayout

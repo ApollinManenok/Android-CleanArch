@@ -12,8 +12,10 @@ import com.gmail.pmanenok.domain.entity.student.StudentSearch
 import com.gmail.pmanenok.domain.repositories.StudentRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
+import javax.inject.Inject
 
-class StudentRepositoryImplTestDb(val apiService: RestService, val studentDao: StudentDao) : StudentRepository {
+//class StudentRepositoryImplTestDb(val apiService: RestService, val studentDao: StudentDao) : StudentRepository {
+class StudentRepositoryImplTestDb @Inject constructor(val apiService: RestService, val studentDao: StudentDao) : StudentRepository {
 
     companion object {
         const val TIME_BUFFER = 60000

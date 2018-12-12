@@ -8,8 +8,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import java.util.concurrent.TimeUnit
 
-class HW9ViewModel() : BaseViewModel<HW9Router>() {
-    val timer = ObservableField<String>("Hello from HW9ViewModel")
+class HW9ViewModel() : BaseViewModel<HW20Router>() {
+    val timer = ObservableField<String>("Hello from HW20ViewModel")
 
     private var disposable: Disposable? = null
     private var observable: Observable<Long>

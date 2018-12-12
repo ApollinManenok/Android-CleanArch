@@ -9,9 +9,9 @@ import com.gmail.pmanenok.tasks.BR
 abstract class BaseMvvmActivity<VM : BaseViewModel<R>,
         R : BaseRouter<*>, B : ViewDataBinding> : BaseActivity() {
 
-    protected lateinit var viewModel: VM
+    protected open lateinit var viewModel: VM
     protected lateinit var binding: B
-    public lateinit var router: R
+    open lateinit var router: R
 
 
     abstract fun prodiveViewModel(): VM

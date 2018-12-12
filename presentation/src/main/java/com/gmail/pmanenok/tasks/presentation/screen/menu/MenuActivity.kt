@@ -41,5 +41,6 @@ class MenuActivity : BaseMvvmActivity<MenuViewModel, MenuRouter, ActivityMenuBin
             var intent = Intent(this@MenuActivity, StudentActivity::class.java)
             startActivity(intent)
         }
+
     }
 }

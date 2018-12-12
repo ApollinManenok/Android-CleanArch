@@ -1,5 +1,6 @@
 package com.gmail.pmanenok.data.entity
 
+import com.gmail.pmanenok.domain.entity.Login
 import com.gmail.pmanenok.domain.entity.student.Student
 
 fun StudentResponse.transformToDomain(): Student {
@@ -19,6 +20,13 @@ fun Student.transformToRequest(): StudentRequest {
         age = age,
         gender = gender,
         imageUrl = imageUrl
+    )
+}
+
+fun Login.transformToLoginRequest(): LoginRequest {
+    return LoginRequest(
+        login = login,
+        password = password
     )
 }
 

@@ -40,6 +40,7 @@ def ok_http_version = "3.11.0"
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:1.10.19'
 
+    implementation "javax.inject:javax.inject:1"
 
     api project(path: ":domain")
 }
